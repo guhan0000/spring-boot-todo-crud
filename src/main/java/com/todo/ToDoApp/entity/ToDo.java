@@ -1,11 +1,13 @@
 package com.todo.ToDoApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.http.HttpStatusCode;
 
 @Entity
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ToDo {
 //    public long getId() {
 //        return id;

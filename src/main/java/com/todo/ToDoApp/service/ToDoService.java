@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ToDoService  {
     @Autowired
@@ -14,6 +16,12 @@ public class ToDoService  {
 
     public ToDo create(ToDo toDo){
        return repository.save(toDo);
+    }
+    public ToDo get(long id){
+        return repository.getReferenceById(id);
+    }
+    public List<ToDo> getAll(){
+        return repository.findAll();
     }
 
 
