@@ -23,6 +23,15 @@ public class ToDoService  {
     public List<ToDo> getAll(){
         return repository.findAll();
     }
+    public  ToDo update(ToDo toDo){
+        return repository.save(toDo);
+    }
+    public void delete(long id){
+         repository.deleteById(id);
+    }
+    public void deleteAllTasks(){
+        repository.deleteAll();
+    }
 
 
 }

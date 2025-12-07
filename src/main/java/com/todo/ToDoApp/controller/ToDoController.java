@@ -34,5 +34,14 @@ public class ToDoController {
     public ResponseEntity<List<ToDo>> getAll(){
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
     }
+    @PutMapping("/update")
+    public ResponseEntity<ToDo> update(@RequestBody ToDo toDo){
+        return new ResponseEntity<>(service.update(toDo),HttpStatus.ACCEPTED);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable long id){
+        service.delete(id);
+
+    }
 
 }
