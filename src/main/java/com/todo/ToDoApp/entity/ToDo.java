@@ -2,7 +2,12 @@ package com.todo.ToDoApp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+
 import org.springframework.http.HttpStatusCode;
 
 @Entity
@@ -44,7 +49,16 @@ public class ToDo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+    @NotBlank
+    @NotNull
     String title;
+    @NotBlank
+    @NotNull
     String description;
     boolean isCompleted;
+    @Email
+    String email;
+    @Pattern(regexp = "^[6-9][0-9]{9}$z")
+    String mobile;
 }
