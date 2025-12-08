@@ -3,6 +3,7 @@ package com.todo.ToDoApp.controller;
 import com.todo.ToDoApp.entity.ToDo;
 import com.todo.ToDoApp.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,11 @@ public class ToDoController {
     @GetMapping("/all")
     public ResponseEntity<List<ToDo>> getAll(){
         return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
+    }
+    @GetMapping("/get/page")
+    public ResponseEntity<Page<ToDo>> getAllPagedTasks(@RequestParam int page,@RequestParam int size){
+        return new ResponseEntity<>(service.getAllPagedTasks(page,size),HttpStatus.OK);
+
     }
     @PutMapping("/update")
     public ResponseEntity<ToDo> update(@RequestBody ToDo toDo){

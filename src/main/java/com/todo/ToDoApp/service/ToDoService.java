@@ -3,8 +3,9 @@ package com.todo.ToDoApp.service;
 import com.todo.ToDoApp.entity.ToDo;
 import com.todo.ToDoApp.repository.ToDoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public class ToDoService  {
     }
     public void deleteAllTasks(){
         repository.deleteAll();
+    }
+    public Page<ToDo> getAllPagedTasks(int page, int size) {
+        Pageable pageable= PageRequest.of(page,size);
+        return repository.findAll(pageable);
+
     }
 
 
