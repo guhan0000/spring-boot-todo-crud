@@ -42,7 +42,7 @@ public class ToDo {
 //    }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String title;
     String description;
