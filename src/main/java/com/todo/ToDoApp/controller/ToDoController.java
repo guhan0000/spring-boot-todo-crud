@@ -2,6 +2,9 @@ package com.todo.ToDoApp.controller;
 
 import com.todo.ToDoApp.entity.ToDo;
 import com.todo.ToDoApp.service.ToDoService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/todo")
+@Slf4j
 public class ToDoController {
     @Autowired
     ToDoService service;
@@ -25,11 +29,16 @@ public class ToDoController {
     public ResponseEntity<ToDo> create(@RequestBody ToDo toDo){
         return new ResponseEntity<>(service.create(toDo), HttpStatus.CREATED);
     }
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Task Fetched Successfully"),
+            @ApiResponse(responseCode = "404",description = "Task Not Found")
+    })
     @GetMapping("/get/{id}")
     public ResponseEntity<ToDo> get(@PathVariable long id){
 
-            ToDo toDo=service.get(id);
-            return new ResponseEntity<>(toDo,HttpStatus.OK);
+                ToDo toDo=service.get(id);
+//                log.info("Object Returned for available ID");
+                return new ResponseEntity<>(toDo,HttpStatus.OK);
     }
     @GetMapping("/all")
     public ResponseEntity<List<ToDo>> getAll(){
